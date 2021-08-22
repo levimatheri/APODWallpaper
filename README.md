@@ -6,4 +6,4 @@ Automatically sets Windows wallpaper to [Astronomy pic of the day](https://apod.
 Open and run the .sln file on Visual Studio 
 
 # API Key
-App uses DEMO key by default. [Sign up](https://api.nasa.gov/) for your key if you want higher rate limits
+App uses DEMO key by default. [Sign up](https://api.nasa.gov/) for your key and modify appsettings.json if you want higher rate limits.
