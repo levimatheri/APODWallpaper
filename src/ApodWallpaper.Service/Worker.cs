@@ -19,13 +19,29 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
+        try
         {
-            //_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                //_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
-            var data = await _mediator.Send(new GetApodRequest(EntryDate: new DateOnly(2022, 9, 9)), stoppingToken);
-            _logger.LogInformation(JsonConvert.SerializeObject(data));
-            await Task.Delay(5000, stoppingToken);
+                var data = await _mediator.Send(new GetApodRequest(EntryDate: new DateOnly(2022, 9, 9)), stoppingToken);
+                _logger.LogInformation(JsonConvert.SerializeObject(data));
+                await Task.Delay(TimeSpan.FromSeconds(15), stoppingToken);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "{Message}", ex.Message);
+            // Terminates this process and returns an exit code to the operating system.
+            // This is required to avoid the 'BackgroundServiceExceptionBehavior', which
+            // performs one of two scenarios:
+            // 1. When set to "Ignore": will do nothing at all, errors cause zombie services.
+            // 2. When set to "StopHost": will cleanly stop the host, and log errors.
+            //
+            // In order for the Windows Service Management system to leverage configured
+            // recovery options, we need to terminate the process with a non-zero exit code.
+            Environment.Exit(1);
         }
     }
 }

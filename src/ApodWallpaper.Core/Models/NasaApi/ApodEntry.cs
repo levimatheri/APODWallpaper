@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ApodWallpaper.Core.Models;
+namespace ApodWallpaper.Core.Models.NasaApi;
 
 public record ApodEntry(
     string Url,

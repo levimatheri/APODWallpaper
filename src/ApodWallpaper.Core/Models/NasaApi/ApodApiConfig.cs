@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApodWallpaper.Core.Models;
+namespace ApodWallpaper.Core.Models.NasaApi;
 public class ApodApiConfig
 {
     public const string ConfigName = nameof(ApodApiConfig);

@@ -1,5 +1,5 @@
 ﻿using ApodWallpaper.Core.Extensions;
-using ApodWallpaper.Core.Models;
+using ApodWallpaper.Core.Models.NasaApi;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
